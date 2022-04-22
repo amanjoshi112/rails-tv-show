@@ -1,0 +1,18 @@
+<%= form_tag channels_path, :method=>"get" do %>
+	<%= label_tag(:search, "Which Channel you want to See:") %>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag("Search", :name=>nil) %>
+<% end %>
+<h1>Channels<h1>
+
+<% @channels.in_groups_of(4, false).each do |group| %>
+<div class="row">
+	<% group.each do |channel| %>
+	  <div class="col-sm-12 col-md-6 col-lg-4 text-center border">
+	    <%= link_to image_tag(channel.image_url, class: "img-responsive"), shows_path(channel) %>
+        <h6><strong><%= raw channel.name %></strong></h6>
+        <p><i><%= raw channel.tagline %></i></p>
+	  </div>
+	<% end %> 
+</div>
+<% end %>

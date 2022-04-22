@@ -1,0 +1,17 @@
+<div class="col-sm-12 col-md-6 col-lg-4 text-center border">
+        <br>  
+        <%= image_tag(@show.image_url, class: "img-responsive") %>
+          <!-- <h6> #raw show.name </h6> -->
+          <br>
+          <br>
+          <p>
+            <strong>Time:</strong>
+            <%= @show.time.strftime("%I:%M %p") %>
+          </p>
+          <% if current_user %>
+            <div class="faves">
+              <%= fave_or_unfave_button(@show, @favorite) %>
+            </div>
+            <%= @favorite %>
+          <% end %>
+</div>

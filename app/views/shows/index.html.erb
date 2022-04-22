@@ -1,0 +1,26 @@
+<%= form_tag shows_path, :method=>"get" do %>
+	<%= label_tag(:search, "Which Show you want to See:") %>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag("Search", :name=>nil) %>
+<% end %>
+
+<h1 class="text-center">Shows <h1>
+<% @shows.in_groups_of(4, false).each do |group| %>
+<div class="row">
+	<% group.each do |show| %>
+	  	<div class="col-sm-12 col-md-6 col-lg-4 text-center border">
+	  		<br>	
+	    	<%=image_tag(show.image_url, class: "img-responsive") %>
+        	<!-- <h6> #raw show.name </h6> -->
+        	<br>
+        	<br>
+	        <p>
+	        	<strong>Time:</strong>
+	        	<%= show.time.strftime("%I:%M %p") %>
+	        </p>
+	        <p><%= link_to "More Detail", show_path(show) %></p>
+	        </div>
+	<% end %> 
+</div>
+<% end %>
+
